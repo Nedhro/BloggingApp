@@ -1,6 +1,7 @@
 package com.prodev.bloggingservice.model;
 
 import com.prodev.bloggingservice.auth.AuthUser;
+import com.prodev.bloggingservice.model.enums.Status;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,11 +31,14 @@ public abstract class BaseModel implements Serializable {
     @Column(name = "modified_by")
     private Long modified_by;
 
+    private Status status;
+
 
     @PrePersist
     public void prePersist() {
         this.createdDate = new Date();
         this.lastModifiedDate = new Date();
+        this.status = Status.DRAFT;
         if (SecurityContextHolder.getContext().getAuthentication() != null) {
             if (!(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String)) {
                 AuthUser user = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

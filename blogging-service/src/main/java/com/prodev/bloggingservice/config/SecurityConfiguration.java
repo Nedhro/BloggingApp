@@ -70,22 +70,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(myAuthenticationEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/", "/resources/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/index", "/resources/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/js/**", "/css/**", "/images/**",
-                        "/public/**", "/register", "/", "/login").permitAll()
+                "/public/**", "/register", "/", "/login").permitAll()
+                .antMatchers(UrlConstraints.AuthManagement.ROOT + allPrefix, UrlConstraints.UserManagement.ROOT).permitAll()
                 .antMatchers("/", UrlConstraints.AuthManagement.ROOT + allPrefix).permitAll()
                 .antMatchers("/h2/**").permitAll()
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
-        http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addExposedHeader("Access-Control-Expose-Headers,authorization");
         configuration.addAllowedOrigin("*");

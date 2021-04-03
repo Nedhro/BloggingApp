@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 @Data
 public class AuthUser implements UserDetails {
     private Long id;
-    private String userName;
+    private String username;
     @JsonIgnore
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public AuthUser(Long id, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
+    public AuthUser(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.authorities = authorities;
     }
@@ -30,7 +30,7 @@ public class AuthUser implements UserDetails {
     public static UserPrinciple create(User user) {
         try {
             List<GrantedAuthority> authorities = user.getRoleList().stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
-            return new UserPrinciple(user.getId(), user.getUserName(), user.getPassword(), authorities);
+            return new UserPrinciple(user.getId(), user.getUsername(), user.getPassword(), authorities);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -50,7 +50,7 @@ public class AuthUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
