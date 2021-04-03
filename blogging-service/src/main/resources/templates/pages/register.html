@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<script src="https://use.fontawesome.com/c0c323679c.js"></script>
+<script th:inline="javascript" th:src="@{/js/register.js}"></script>
+
+
+<body>
+
+<!--Navbar-->
+<nav th:replace="fragments/header :: nav"></nav>
+
+<div class="container" style="padding-bottom:25px;">
+    <div class="row">
+        <div class="card col-6 mx-auto" style="width: 20rem; margin-top: 80px;">
+            <div class="card-body">
+                <h4 class="card-title text-info text-center">Registration form</h4>
+                <!--Form-->
+                <form method="get" th:onsubmit="saveUser()" th:action="@{/login}">
+                    <div class="form-group">
+                        <label for="fullName">Full Name<span class="text-danger"> (*)</span></label>
+                        <input type="text" class="form-control" name="fullName"
+                               id="fullName" placeholder="Enter name" required>
+                    </div>
+                    <div class="form-group">
+                        <label tfor="username">Username<span class="text-danger"> (*)</span></label>
+                        <input type="text" class="form-control" name="username" id="username"
+                               placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address<span class="text-danger"> (*)</span></label>
+                        <input type="email" class="form-control" name="email" id="email"
+                               aria-describedby="emailHelp" placeholder="Enter email" required>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                        <!--<span class="text-danger"  th:text="${alreadyRegisteredMessage}"></span>-->
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password<span class="text-danger"> (*)</span></label>
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </form>
+                <p>Already have an account? <a class="text-info font-weight-bold" href="/login.html">Login Instead</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

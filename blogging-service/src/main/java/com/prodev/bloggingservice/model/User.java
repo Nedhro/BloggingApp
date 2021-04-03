@@ -17,10 +17,10 @@ public class User extends BaseModel{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
-    private String userName;
+    private String username;
     private String email;
     private String password;
-    private Boolean enabled;
+    private Boolean enabled = Boolean.FALSE;
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Role> roleList;

@@ -3,6 +3,7 @@ package com.prodev.bloggingservice.log;
 
 import com.prodev.bloggingservice.model.Role;
 import com.prodev.bloggingservice.model.User;
+import com.prodev.bloggingservice.model.enums.Status;
 import com.prodev.bloggingservice.repository.RoleRepository;
 import com.prodev.bloggingservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,14 +59,15 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             userRole.setRoleName(userRoleName);
             roleRepository.save(userRole);
         }
-        User user = userRepository.findByUserName(adminUser);
+        User user = userRepository.findByUsername(adminUser);
         if (user == null) {
             user = new User();
             user.setFullName("Super Admin");
-            user.setUserName(adminUser);
+            user.setUsername(adminUser);
             user.setPassword(passwordEncoder.encode(adminPassword));
             user.setEmail("admin@gmail.com");
             user.setEnabled(true);
+            user.setStatus(Status.APPROVED);
         }
         user.setRoleList(Arrays.asList(role, userRole));
         userRepository.save(user);

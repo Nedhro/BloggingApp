@@ -8,5 +8,5 @@ public class LoginResponseDto {
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private String token;
     @JsonInclude(JsonInclude.Include.ALWAYS)
-    private String userName;
+    private String username;
 }

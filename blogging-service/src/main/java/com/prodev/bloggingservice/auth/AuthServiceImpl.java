@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Response login(LoginDto loginDto) {
-        User user = userRepository.findByUserName(loginDto.getUsername());
+        User user = userRepository.findByUsername(loginDto.getUsername());
         if (user == null) {
             return ResponseBuilder.getFailureResponse(HttpStatus.UNAUTHORIZED, "Invalid Username or password");
         }
@@ -38,7 +38,7 @@ public class AuthServiceImpl implements AuthService {
         if (authentication.isAuthenticated()) {
             LoginResponseDto loginResponseDto = new LoginResponseDto();
             loginResponseDto.setToken(jwtUtil.generateToken(authentication));
-            loginResponseDto.setUserName(user.getUserName());
+            loginResponseDto.setUsername(user.getUsername());
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK, "Logged In Success", loginResponseDto);
         }
 
