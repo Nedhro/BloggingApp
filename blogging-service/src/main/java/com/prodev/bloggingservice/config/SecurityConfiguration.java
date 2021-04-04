@@ -71,7 +71,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/index", "/resources/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/js/**", "/css/**", "/images/**",
+                .antMatchers(HttpMethod.POST, "/index", "/").permitAll()
+                .antMatchers(HttpMethod.GET, "/favicon.ico","/js/**", "/css/**", "/images/**",
                 "/public/**", "/register", "/", "/login").permitAll()
                 .antMatchers(UrlConstraints.AuthManagement.ROOT + allPrefix, UrlConstraints.UserManagement.ROOT).permitAll()
                 .antMatchers("/", UrlConstraints.AuthManagement.ROOT + allPrefix).permitAll()
