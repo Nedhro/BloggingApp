@@ -13,7 +13,7 @@
             <div class="card-body">
                 <h4 class="card-title font-weight-bold text-center" >Log in</h4>
 <!--                <p th:if="${loginError}"  class="alert alert-danger" role="alert">Wrong user or password</p>-->
-                <form th:action="@{/}" method="post" th:onsubmit="loginUser()">
+                <form th:action="@{/index}" th:method="post" th:onsubmit="loginUser()">
                     <div class="form-group">
                         <label th:for="username">Username</label>
                         <input type="text" class="form-control" th:id="username" name="username" th:name="username" aria-describedby="userNameHelp" placeholder="Enter username">
