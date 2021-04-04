@@ -24,7 +24,6 @@ import java.util.Optional;
 @Service
 public class PostServiceImpl extends CommonServiceImpl<Post> implements PostService {
 
-
     @Autowired
     private PostCategoryRepository postCategoryRepository;
 

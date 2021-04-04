@@ -1,5 +1,6 @@
 package com.prodev.bloggingservice.blog.post;
 
+import com.prodev.bloggingservice.annotations.ApiController;
 import com.prodev.bloggingservice.auth.AuthUser;
 import com.prodev.bloggingservice.model.enums.Status;
 import com.prodev.bloggingservice.util.AlreadyExistException;
@@ -19,25 +20,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@ApiController
 public class PostController {
 
-  /*  private static Set<String> features = new HashSet<String>();
-
-    static {
-        features.add("BLOG_COMMENT");
-        features.add("BLOG_READ");
-        features.add("BLOG_WRITE");
-        features.add("BLOG_PUBLISH");
-        features.add("BLOGCATEGORY_WRITE");
-        features.add("BLOGTAG_WRITE");
-        features.add("BLOGTAG_READ");
-        features.add("BLOGCATEGORY_READ");
-        CustomUtil.permissions.put(RoleGroup.BLOG.name(), features);
-    }*/
-
     @Autowired
-    TagRepository tagRepository;
+    private TagRepository tagRepository;
     @Autowired
     private PostService postService;
     @Autowired
